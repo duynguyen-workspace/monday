@@ -1,0 +1,27 @@
+body {
+    overflow-y: hidden
+}
+
+.divider {
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+
+    &::before, &::after {
+        flex: 1;
+        content: '';
+        background-color: black;
+        padding: 3px;
+        margin: 5px;
+    }
+}
+
+.google-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.google-icon {
+    display: inline-block;
+}
