@@ -2,7 +2,7 @@ import { useRoutes } from "react-router-dom"
 import { PATH }  from "../paths"
 import { lazy } from "react"
 
-const RegisterPage = lazy(() => import("../pages/admin/Register"))
+const RegisterFirst = lazy(() => import("../pages/auth/Register/First"))
 
 const useRoutesElements = () => {
     const elements = useRoutes([
@@ -12,7 +12,13 @@ const useRoutesElements = () => {
             children: [
                 {
                     path: PATH.REGISTER,
-                    element: <RegisterPage />,
+                    element: "",
+                    children: [
+                        {
+                            path: "welcome",
+                            element: <RegisterFirst />
+                        }
+                    ]
                 },
             ]
         }

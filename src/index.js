@@ -1,10 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// Supports weights 300-900
-import '@fontsource-variable/figtree';
 
-// Supports weights 100 - 900
-import '@fontsource/roboto';
 import './index.scss';
 import App from './App';
 
