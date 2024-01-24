@@ -30,8 +30,8 @@ const RegisterFirst = () => {
 
                                     <Input size={"large"} id="email" name="email" type="text" className="w-full block md:text-lg text-base sm:p-3 p-2 ps-4 mb-4 border border-slate-300 rounded transition-all focus:border-blue-500 hover:border-black" placeholder="name@company.com"></Input>
                                 
-                                    <Button className="w-full h-fit md:p-3 mb-5 bg-blue-600 sm:text-lg text-base text-white border border-slate-500 rounded transition-all">
-                                        Continue
+                                    <Button className="w-full h-fit md:p-3 mb-5 bg-blue-600 sm:text-lg text-base text-white border border-slate-500 rounded transition-all hover:bg-blue-800">
+                                        <p className="text-white">Continue</p>
                                     </Button>
                                 </div>
                                 <p className="sm:text-lg text-base font-normal">By proceeding, you agree to the <br></br> <Link to={""} className="text-blue-600 hover:underline hover:text-blue-800">Terms of Service</Link> and <Link to={""} className="text-blue-600 hover:underline hover:text-blue-800">Privacy Policy</Link></p>

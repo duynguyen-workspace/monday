@@ -1,9 +1,10 @@
-import { useRoutes } from "react-router-dom"
-import { PATH }  from "../paths"
-import { lazy } from "react"
+import { useRoutes } from "react-router-dom";
+import { PATH } from "../paths";
+import { Suspense, lazy } from "react";
 
-const RegisterFirst = lazy(() => import("../pages/auth/Register/First"))
-const RegisterSecond = lazy(() => import("../pages/auth/Register/Second"))
+const RegisterFirst = lazy(() => import("../pages/auth/Register/First"));
+const RegisterSecond = lazy(() => import("../pages/auth/Register/Second"));
+const RegisterThird = lazy(() => import("../pages/auth/Register/Third"));
 
 const useRoutesElements = () => {
     const elements = useRoutes([
@@ -18,20 +19,35 @@ const useRoutesElements = () => {
                         {
                             index: true,
                             path: "welcome",
-                            element: <RegisterFirst />
+                            element: (
+                                <Suspense callBack={<div>Loading</div>}>
+                                    <RegisterFirst />
+                                </Suspense>
+                            ),
                         },
                         {
                             path: "create",
-                            element: <RegisterSecond />
-                        }
-                    ]
+                            element: (
+                                <Suspense callBack={<div>Loading</div>}>
+                                    <RegisterSecond />
+                                </Suspense>
+                            ),
+                        },
+                        {
+                            path: "ask",
+                            element: (
+                                <Suspense callBack={<div>Loading</div>}>
+                                    <RegisterThird />
+                                </Suspense>
+                            ),
+                        },
+                    ],
                 },
-            ]
-        }
-    ])
+            ],
+        },
+    ]);
 
-    return elements
-}
+    return elements;
+};
 
-
-export default useRoutesElements
+export default useRoutesElements;

@@ -30,10 +30,10 @@ const RegisterSecond = () => {
                         </div>
                         <div className="flex md:justify-end justify-between md:mb-20 sm:mb-32 mb-48 lg:me-20 md:me-10 sm:w-96 w-72 mx-auto">
                             <Button className="md:hidden block w-fit h-fit px-5 py-2 sm:text-lg text-base bg-slate-100 border border-slate-500 rounded transition-all">
-                                Back
+                                <p className="text-black">Back</p>
                             </Button>
-                            <Button className="w-fit h-fit px-5 py-2 bg-blue-600 sm:text-lg text-base text-white border border-slate-500 rounded transition-all">
-                                Continue <i className="fa-solid fa-chevron-right text-base ps-4"></i>
+                            <Button className="w-fit h-fit px-5 py-2 bg-blue-600 sm:text-lg text-base text-white border border-slate-500 rounded transition-all hover:bg-blue-800">
+                                <p className="text-white">Continue <i className="fa-solid fa-chevron-right text-base ps-4"></i></p>
                             </Button>
                         </div>  
                     </div> 
