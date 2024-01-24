@@ -5,6 +5,7 @@ import { Suspense, lazy } from "react";
 const RegisterFirst = lazy(() => import("../pages/auth/Register/First"));
 const RegisterSecond = lazy(() => import("../pages/auth/Register/Second"));
 const RegisterThird = lazy(() => import("../pages/auth/Register/Third"));
+const RegisterLast = lazy(() => import("../pages/auth/Register/Last"));
 
 const useRoutesElements = () => {
     const elements = useRoutes([
@@ -38,6 +39,14 @@ const useRoutesElements = () => {
                             element: (
                                 <Suspense callBack={<div>Loading</div>}>
                                     <RegisterThird />
+                                </Suspense>
+                            ),
+                        },
+                        {
+                            path: "how",
+                            element: (
+                                <Suspense callBack={<div>Loading</div>}>
+                                    <RegisterLast />
                                 </Suspense>
                             ),
                         },
