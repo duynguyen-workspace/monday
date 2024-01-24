@@ -3,6 +3,7 @@ import { PATH }  from "../paths"
 import { lazy } from "react"
 
 const RegisterFirst = lazy(() => import("../pages/auth/Register/First"))
+const RegisterSecond = lazy(() => import("../pages/auth/Register/Second"))
 
 const useRoutesElements = () => {
     const elements = useRoutes([
@@ -15,8 +16,13 @@ const useRoutesElements = () => {
                     element: "",
                     children: [
                         {
+                            index: true,
                             path: "welcome",
                             element: <RegisterFirst />
+                        },
+                        {
+                            path: "create",
+                            element: <RegisterSecond />
                         }
                     ]
                 },
