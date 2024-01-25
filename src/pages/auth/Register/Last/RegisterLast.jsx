@@ -7,9 +7,7 @@ const RegisterLast = () => {
 
     return (
         <div className="w-full h-full">
-            
             <Row justify={"center"} className="min-h-screen">
-
                 <Col md={14} span={24}>
                     <div className="flex flex-col h-full mx-auto">
                         <div className="flex flex-col flex-grow justify-start lg:ps-24 md:ps-12 md:pe-0 md:mx-0 py-16 mx-auto gap-2">

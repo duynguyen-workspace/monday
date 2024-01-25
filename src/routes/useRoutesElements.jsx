@@ -6,6 +6,7 @@ const RegisterFirst = lazy(() => import("../pages/auth/Register/First"));
 const RegisterSecond = lazy(() => import("../pages/auth/Register/Second"));
 const RegisterThird = lazy(() => import("../pages/auth/Register/Third"));
 const RegisterLast = lazy(() => import("../pages/auth/Register/Last"));
+const InvitePage = lazy(() => import("../pages/auth/Invite"));
 
 const useRoutesElements = () => {
     const elements = useRoutes([
@@ -52,6 +53,14 @@ const useRoutesElements = () => {
                         },
                     ],
                 },
+                {
+                    path: PATH.INVITE,
+                    element: (
+                        <Suspense callBack={<div>Loading</div>}>
+                            <InvitePage />
+                        </Suspense>
+                    ),
+                }
             ],
         },
     ]);
