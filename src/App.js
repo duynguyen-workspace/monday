@@ -1,8 +1,11 @@
-import { Routes, Route } from 'react-router-dom';
+import useRoutesElements from "./routes/useRoutesElements";
+
 function App() {
+  let elements = useRoutesElements()
+
   return (
     <>
-      <Routes></Routes>
+      {elements}
     </>
   );
 }
