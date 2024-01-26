@@ -1,9 +1,37 @@
 import { Button, Col, Row } from "antd";
-import CheckboxList from "../../../../components/CheckboxList"
+import CheckboxList from "../../../../components/CheckboxList";
 import howImg from "../../../../assets/img/how-img.avif";
+import { useNavigate } from "react-router-dom";
+import { PATH } from "../../../../paths";
 
 const RegisterLast = () => {
-    const checkboxContent = ["Youtube ad", "Friend / Colleague", "Consultant", "TV / Streaming service", "Billboard / Public transit ad", "LinkedIn", "Social media (Facebook, Instagram, Reddit, etc.)", "Audio ad (Podcast, Spotify)", "Search engine (Google, Bing, etc.)", "Software review sites", "Other"] 
+    const checkboxContent = [
+        "Youtube ad",
+        "Friend / Colleague",
+        "Consultant",
+        "TV / Streaming service",
+        "Billboard / Public transit ad",
+        "LinkedIn",
+        "Social media (Facebook, Instagram, Reddit, etc.)",
+        "Audio ad (Podcast, Spotify)",
+        "Search engine (Google, Bing, etc.)",
+        "Software review sites",
+        "Other",
+    ];
+
+    const navigate = useNavigate();
+
+    const handleBackClicked = (e) => {
+        e.preventDefault();
+
+        navigate(`${PATH.REGISTER}/ask`);
+    };
+
+    const handleContinueClicked = (e) => {
+        e.preventDefault();
+
+        navigate(`${PATH.INVITE}`);
+    };
 
     return (
         <div className="w-full h-full">
@@ -24,20 +52,25 @@ const RegisterLast = () => {
                                         className="md:text-2xl text-xl lg:text-nowrap mb-6"
                                         style={{ letterSpacing: -0.5 }}
                                     >
-                                        One last question, how did you hear about us?
+                                        One last question, how did you hear
+                                        about us?
                                     </h3>
 
-                                    <CheckboxList content={checkboxContent}/>
+                                    <CheckboxList content={checkboxContent} />
                                 </div>
                             </div>
                         </div>
                         <div className="flex md:gap-3 justify-between md:mb-20 sm:mb-32 mb-48 md:w-full sm:w-96 w-80 lg:px-24 md:px-12 mx-auto">
-                            <Button className="w-fit h-fit px-5 py-2 sm:text-lg text-base bg-white border border-slate-600 rounded transition-all hover:!border-slate-800 hover:bg-slate-50">
+                            <Button
+                                className="w-fit h-fit px-5 py-2 sm:text-lg text-base bg-white border border-slate-600 rounded transition-all hover:!border-slate-800 hover:bg-slate-50"
+                                onClick={handleBackClicked}
+                            >
                                 <i className="fa-solid fa-chevron-left text-base text-black me-4"></i>
                                 <span className="text-black">Back</span>
                             </Button>
                             <Button
                                 className="w-fit h-fit px-5 py-2 bg-blue-600 sm:text-lg text-base border border-slate-500 rounded transition-all hover:bg-blue-800"
+                                onClick={handleContinueClicked}
                             >
                                 <p className="text-white">
                                     Continue
@@ -57,7 +90,7 @@ const RegisterLast = () => {
                 </Col>
             </Row>
         </div>
-    )
-}
+    );
+};
 
-export default RegisterLast
+export default RegisterLast;

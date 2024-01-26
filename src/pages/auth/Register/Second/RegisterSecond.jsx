@@ -1,10 +1,21 @@
 import { Button, Col, Input, Row } from "antd";
 import createImg from "../../../../assets/img/create-img.avif";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { PATH } from "../../../../paths";
 
 const RegisterSecond = () => {
+    const navigate = useNavigate()
+
+    const handleBackClicked = (e) => {
+        e.preventDefault()
+
+        navigate(`${PATH.REGISTER}/welcome`)
+    }
+
     const handleContinueClicked = (e) => {
-        return <Navigate to="/ask" replace={true} />
+        e.preventDefault()
+
+        navigate(`${PATH.REGISTER}/ask`)
     }
 
     return (
@@ -75,12 +86,16 @@ const RegisterSecond = () => {
                             </div>
                         </div>
                         <div className="flex md:gap-3 justify-between md:mb-20 sm:mb-32 mb-48 md:w-full sm:w-96 w-72 lg:px-24 md:px-12 mx-auto">
-                            <Button className="w-fit h-fit px-5 py-2 sm:text-lg text-base bg-white border border-slate-600 rounded transition-all hover:!border-slate-800 hover:bg-slate-50">
+                            <Button 
+                                className="w-fit h-fit px-5 py-2 sm:text-lg text-base bg-white border border-slate-600 rounded transition-all hover:!border-slate-800 hover:bg-slate-50"
+                                onClick={handleBackClicked}
+                            >
                                 <i className="fa-solid fa-chevron-left text-base text-black me-4"></i>
                                 <span className="text-black">Back</span>
                             </Button>
                             <Button
                                 className="w-fit h-fit px-5 py-2 bg-blue-600 sm:text-lg text-base border border-slate-500 rounded transition-all hover:bg-blue-800"
+                                onClick={handleContinueClicked}
                             >
                                 <p className="text-white">
                                     Continue

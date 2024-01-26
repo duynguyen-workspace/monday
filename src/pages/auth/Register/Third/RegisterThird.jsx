@@ -2,10 +2,14 @@ import { Button, Col, Row } from "antd";
 import askImg from "../../../../assets/img/ask-img.avif";
 import { useEffect, useState } from "react";
 import RadioList from "../../../../components/RadioList";
+import { useNavigate } from "react-router-dom";
+import { PATH } from "../../../../paths";
 
 const RegisterThird = () => {
     const [optionValue, setOptionValue] = useState(0);
     const [childOptionValue, setChildOptionValue] = useState(0);
+
+    const navigate = useNavigate()
 
     const optionContent = ["Work", "Personal", "School", "Nonprofits"];
 
@@ -92,6 +96,18 @@ const RegisterThird = () => {
         return true;
     };
 
+    const handleBackClicked = (e) => {
+        e.preventDefault()
+
+        navigate(`${PATH.REGISTER}/create`)
+    }
+
+    const handleContinueClicked = (e) => {
+        e.preventDefault()
+
+        navigate(`${PATH.REGISTER}/how`)
+    }
+
     useEffect(() => {
         setChildOptionValue(0);
     }, [optionValue]);
@@ -144,12 +160,17 @@ const RegisterThird = () => {
                             </div>
                         </div>
                         <div className="flex md:gap-3 justify-between md:mb-20 sm:mb-32 mb-48 md:w-full sm:w-96 w-80 lg:px-24 md:px-12 mx-auto">
-                            <Button className="w-fit h-fit px-5 py-2 sm:text-lg text-base bg-white border border-slate-600 rounded transition-all hover:!border-slate-800 hover:bg-slate-50">
+                            <Button 
+                                className="w-fit h-fit px-5 py-2 sm:text-lg text-base bg-white border border-slate-600 rounded transition-all hover:!border-slate-800 hover:bg-slate-50"
+                                onClick={handleBackClicked}
+                            >
                                 <i className="fa-solid fa-chevron-left text-base text-black me-4"></i>
                                 <span className="text-black">Back</span>
                             </Button>
                             <Button
                                 className="w-fit h-fit px-5 py-2 bg-blue-600 sm:text-lg text-base border border-slate-500 rounded transition-all hover:bg-blue-800"
+                                onClick={handleContinueClicked}
+                                disabled={setBtnDisabled()}
                             >
                                 <p className="text-white">
                                     Continue

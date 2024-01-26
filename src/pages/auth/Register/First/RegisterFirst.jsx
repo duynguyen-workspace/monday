@@ -1,9 +1,18 @@
 import { Button, Col, Divider, Input, Row } from "antd";
 import welcomeImg from "../../../../assets/img/welcome-img.avif"
 import googleIcon from "../../../../assets/img/icon-google.svg"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { PATH } from "../../../../paths"
 
 const RegisterFirst = () => {
+    const navigate = useNavigate()
+
+    const handleContinueClicked = (e) => {
+        e.preventDefault()
+
+        navigate(`${PATH.REGISTER}/create`)
+    }
+
     return (
         <div className="w-full h-full">
             <Row justify={"center"} className="min-h-screen">
@@ -30,7 +39,7 @@ const RegisterFirst = () => {
 
                                     <Input size={"large"} id="email" name="email" type="text" className="w-full block md:text-lg text-base sm:p-3 p-2 ps-4 mb-4 border border-slate-300 rounded transition-all focus:border-blue-500 hover:border-black" placeholder="name@company.com"></Input>
                                 
-                                    <Button className="w-full h-fit md:p-3 mb-5 bg-blue-600 sm:text-lg text-base text-white border border-slate-500 rounded transition-all hover:bg-blue-800">
+                                    <Button className="w-full h-fit md:p-3 mb-5 bg-blue-600 sm:text-lg text-base text-white border border-slate-500 rounded transition-all hover:bg-blue-800" onClick={handleContinueClicked}>
                                         <p className="text-white">Continue</p>
                                     </Button>
                                 </div>
