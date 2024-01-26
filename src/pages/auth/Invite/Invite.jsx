@@ -1,21 +1,19 @@
 import { Button, Col, Dropdown, Input, Row } from "antd";
 import inviteImg from "../../../assets/img/invite-img.avif";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import InputDropdown from "../../../components/InputDropdown/InputDropdown";
+import DropdownItem from "../../../components/InputDropdown/DropdownItem";
 
 const Invite = () => {
-    const [role, setRole] = useState("Select Role");
+    const [extraCount, setExtraCount] = useState(0)
+    const [extraContent, setExtraContent] = useState([])
 
     const items = [
         {
             key: "1",
             value: "Admin",
             label: (
-                <div className="">
-                    <h3 className="text-lg font-normal">Admin</h3>
-                    <span className="text-base">
-                        Can invite & manage new users
-                    </span>
-                </div>
+                <DropdownItem name="Admin" description="Can invite & manage new users"/>
             ),
         },
         {
@@ -25,32 +23,42 @@ const Invite = () => {
             key: "2",
             value: "Member",
             label: (
-                <div className="">
-                    <h3 className="text-lg font-normal">Member</h3>
-                    <span className="text-base">Can add and edit content</span>
-                </div>
+                <DropdownItem name="Member" description="Can add and edit content"/>
             ),
         },
     ];
 
-    const handleDropdown = ({ key }) => {
-        console.log(`Click on item - key ${key}`);
+    const updateExtraCount = () => {
+        setExtraCount(extraCount + 1)
+    }
 
-        if (key == 1) {
-            setRole("Admin");
+    const renderExtraInput = () => {
+        let newContent = []
+
+        for (let i = 0; i < extraCount; i++) {
+            newContent.push(
+                <InputDropdown
+                    key={i + 1}
+                    id={i + 1}
+                    items={items}
+                    name={`extra-email-${i}`}
+                />
+            )  
         }
 
-        if (key == 2) {
-            setRole("Member");
-        }
-    };
+        setExtraContent(newContent)
+    }
+
+    useEffect(() => {
+        renderExtraInput()
+    }, [extraCount])
 
     return (
         <div className="w-full h-full">
             <Row justify={"center"} className="min-h-screen">
                 <Col md={14} span={24}>
                     <div className="flex flex-col h-full mx-auto">
-                        <div className="flex flex-col flex-grow justify-start lg:ps-24 md:ps-12 md:pe-0 md:mx-0 py-16 mx-auto gap-2">
+                        <div className="flex flex-col flex-grow justify-start w-full lg:ps-24 md:ps-12 md:pe-0 py-16 sm:pb-16 pb-5 gap-2 sm:px-20 px-10">
                             <img
                                 className="md:mb-16 sm:mb-10 mb-8"
                                 src="https://cdn.monday.com/images/logos/logo-full-big.png"
@@ -72,55 +80,28 @@ const Invite = () => {
                                 </p>
                             </div>
 
-                            <div className="flex justify-start lg:w-4/5 sm:w-96 w-72">
-                                <Input
-                                    id="member-1"
-                                    name="member-1"
-                                    type="email"
-                                    className="block sm:text-base text-sm font-light sm:ps-4 ps-2 border border-slate-500 rounded rounded-r-none transition-all focus:border-blue-500 hover:border-black"
-                                    placeholder="Add email here"
-                                ></Input>
+                            <InputDropdown items={items} />
 
-                                <Dropdown
-                                    menu={{
-                                        items,
-                                        onClick: handleDropdown,
-                                        selectable: true,
-                                        defaultSelectedKeys: ["3"],
-                                    }}
-                                    trigger={["click"]}
-                                    placement="bottom"
-                                    arrow={{
-                                        pointAtCenter: true,
-                                    }}
-                                    className=""
-                                >
-                                    <Button className="h-fit py-2 sm:text-base text-sm border border-slate-500 rounded rounded-l-none ">
-                                        <p className="text-black">
-                                            {role}
-                                            <i className="fa-solid fa-chevron-down text-base ps-4"></i>
-                                        </p>
-                                    </Button>
-                                </Dropdown>
-                            </div>
+                            <InputDropdown items={items} />
 
-                            <Button className="w-fit h-fit py-2 px-4">
+                            {extraCount != 0 && extraContent.map((content) => content)}
+
+                            <Button className="w-fit h-fit py-2 px-4 bg-white border-none shadow-none hover:bg-slate-100 disabled:opacity-30" onClick={updateExtraCount} disabled={extraCount == 3}>
                                 <p className="text-black">
                                     <i className="fa-solid fa-plus pe-2"></i>
                                     Add Another
                                 </p>
                             </Button>
                         </div>
-                        <div className="flex md:gap-3 justify-between md:mb-20 sm:mb-32 mb-48 md:w-full sm:w-96 w-80 lg:px-24 md:px-12 mx-auto">
-                            <Button className="w-fit h-fit px-5 py-2 sm:text-lg text-base bg-white border-none shadow-none">
-                                <span className="text-black">
+                        <div className="flex sm:flex-nowrap flex-wrap w-full md:gap-3 gap-y-5 justify-between md:mb-20 sm:mb-32 mb-48 lg:px-24 sm:px-20 px-10">
+                            <Button className="w-fit h-fit px-5 py-2 sm:bg-white bg-slate-100 border-none sm:shadow-non shadow-sm">
+                                <span className="text-black md:text-lg sm:text-base text-sm">
                                     Remind me later
                                 </span>
                             </Button>
                             <Button className="w-fit h-fit px-5 py-2 bg-blue-600 sm:text-lg text-base border border-slate-500 rounded transition-all hover:bg-blue-800">
-                                <p className="text-white">
-                                    Continue
-                                    <i className="fa-solid fa-chevron-right text-base ps-4"></i>
+                                <p className="text-white md:text-lg sm:text-base text-sm">
+                                    Invite Your Team
                                 </p>
                             </Button>
                         </div>
