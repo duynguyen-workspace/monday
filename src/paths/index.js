@@ -3,5 +3,6 @@ export const PATH = {
     ADMIN: "/admin",
     REGISTER: "/register",
     INVITE: "/invite",
-    LOGIN: "/login"
+    LOGIN: "/login",
+    BOARD: "/board"
 }

@@ -5,3 +5,13 @@
 * { 
     font-family: 'Figtree', sans-serif;
 }
+
+table {
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    overflow: hidden !important; /* Ensures the inner cells' borders don't overflow */
+}
+
+th, td {
+    border: 0.75px solid rgba(112, 128, 144, 0.5);
+}
