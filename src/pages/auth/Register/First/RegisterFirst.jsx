@@ -1,9 +1,8 @@
-import { Button, Col, Divider, Input, Row } from "antd";
+import { Button, Col, Divider, Row } from "antd";
 import welcomeImg from "../../../../assets/img/welcome-img.avif";
 import googleIcon from "../../../../assets/img/icon-google.svg";
 import { Link, useNavigate } from "react-router-dom";
-import InputBtn from "../../../../components/InputBtn";
-import InputErrorText from "../../../../components/InputErrorText";
+import InputField from "../../../../components/InputField";
 import { PATH } from "../../../../paths";
 import { useFormik } from "formik";
 
@@ -31,6 +30,8 @@ const RegisterFirst = () => {
         validate,
         onSubmit: (values) => {
             console.log("values: ", values);
+            
+            formik.setSubmitting(false)
             handleSubmit();
         },
     });
@@ -87,20 +88,22 @@ const RegisterFirst = () => {
 
                                     <Divider>Or</Divider>
 
-                                    <InputBtn
+                                    <InputField
                                         id="email"
                                         name="email"
                                         type="text"
                                         placeholder="name@company.com"
                                         onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
                                         value={formik.values.email}
                                         status={
-                                            formik.errors.email ? "error" : ""
+                                            (formik.touched.email && formik.errors.email) ? "error" : ""
                                         }
+                                        error={{
+                                            condition: formik.touched.email && formik.errors.email,
+                                            text: formik.errors.email
+                                        }}
                                     />
-                                    {formik.errors.email && (
-                                        <InputErrorText text={formik.errors.email}/>
-                                    )}
 
                                     <Button
                                         className="w-full h-fit md:p-3 mb-5 bg-blue-600 sm:text-lg text-base text-white border border-slate-500 rounded transition-all hover:bg-blue-800"

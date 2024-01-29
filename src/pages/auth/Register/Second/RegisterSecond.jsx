@@ -1,10 +1,9 @@
-import { Button, Col, Input, Row } from "antd";
+import { Button, Col, Row } from "antd";
 import createImg from "../../../../assets/img/create-img.avif";
 import { useNavigate } from "react-router-dom";
-import InputBtn from "../../../../components/InputBtn";
+import InputField from "../../../../components/InputField";
 import { PATH } from "../../../../paths";
 import { useFormik } from "formik";
-import InputErrorText from "../../../../components/InputErrorText";
 
 const RegisterSecond = () => {
     const navigate = useNavigate();
@@ -42,6 +41,8 @@ const RegisterSecond = () => {
         validate,
         onSubmit: (values) => {
             console.log("values: ", values);
+            
+            formik.setSubmitting(false)
             handleSubmit();
         },
     });
@@ -82,72 +83,63 @@ const RegisterSecond = () => {
                             </h1>
 
                             <div className="flex flex-col justify-start lg:w-4/5 sm:w-96 w-72">
-                                <label
-                                    className="block w-full pb-2"
-                                    htmlFor="fullName"
-                                >
-                                    Full name
-                                </label>
-                                <InputBtn
+                                <InputField
                                     id="fullName"
                                     name="fullName"
                                     type="text"
                                     placeholder="Enter your full name"
                                     onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
                                     value={formik.values.fullName}
                                     status={
-                                        formik.errors.fullName ? "error" : ""
+                                        (formik.touched.fullName && formik.errors.fullName) ? "error" : ""
                                     }
+                                    label="Full name"
+                                    error={{
+                                        condition: formik.touched.fullName && formik.errors.fullName,
+                                        text: formik.errors.fullName
+                                    }}
                                 />
-                                {formik.errors.fullName && (
-                                    <InputErrorText text={formik.errors.fullName}/>
-                                )}
                             </div>
 
                             <div className="flex flex-col justify-start lg:w-4/5 sm:w-96 w-72">
-                                <label
-                                    className="block w-full pb-2"
-                                    htmlFor="password"
-                                >
-                                    Password
-                                </label>
-                                <InputBtn
+                                <InputField
                                     id="password"
                                     name="password"
                                     type="password"
                                     placeholder="Enter at least 8 characters"
                                     onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
                                     value={formik.values.password}
                                     status={
-                                        formik.errors.password ? "error" : ""
+                                        (formik.touched.password && formik.errors.password) ? "error" : ""
                                     }
+                                    label="Password"
+                                    error={{
+                                        condition: formik.touched.password && formik.errors.password,
+                                        text: formik.errors.password
+                                    }}
                                 />
-                                {formik.errors.password && (
-                                    <InputErrorText text={formik.errors.password}/>
-                                )}
                             </div>
 
                             <div className="flex flex-col justify-start lg:w-4/5 sm:w-96 w-72">
-                                <label
-                                    className="block w-full pb-2"
-                                    htmlFor="fullName"
-                                >
-                                    Account name
-                                </label>
-                                <InputBtn
+                                <InputField
                                     id="accountName"
                                     name="accountName"
                                     type="text"
                                     placeholder="For example, company's or department's name"
                                     onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
                                     value={formik.values.accountName}
                                     status={
-                                        formik.errors.accountName ? "error" : ""
+                                        (formik.touched.accountName && formik.errors.accountName) ? "error" : ""
                                     }
+                                    label="Account name"
+                                    error={{
+                                        condition: formik.touched.accountName && formik.errors.accountName,
+                                        text: formik.errors.accountName
+                                    }}
                                 />
-                                {formik.errors.accountName && (
-                                    <InputErrorText text={formik.errors.accountName}/>
-                                )}
                             </div>
                         </div>
                         <div className="flex md:gap-3 justify-between md:mb-20 sm:mb-32 mb-48 md:w-full sm:w-96 w-72 lg:px-24 md:px-12 mx-auto">
