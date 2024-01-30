@@ -1,9 +1,9 @@
-import { Button, Col, Divider, Progress, Row } from "antd";
-import welcomeImg from "../../../assets/img/welcome-img.avif";
-import { Link, useNavigate } from "react-router-dom";
+import { Button, Col, Row } from "antd";
+import { useNavigate } from "react-router-dom";
 import InputField from "../../../components/InputField";
 import { PATH } from "../../../paths";
 import { useFormik } from "formik";
+import { useState } from "react";
 
 const CreateBoard = () => {
     const navigate = useNavigate();
@@ -45,8 +45,8 @@ const CreateBoard = () => {
         <div className="w-full h-full">
             <Row justify={"center"} className="min-h-screen">
                 <Col md={12} span={24}>
-                    <form className="flex flex-col h-full mx-auto">
-                        <div className="flex flex-col flex-grow md:justify-start justify-center lg:p-24 md:p-12 md:mx-0 mx-auto gap-2">
+                    <form className="flex flex-col h-full justify-center items-center lg:px-8 md:px-12 mx-auto">
+                        <div className="flex flex-col justify-center gap-2">
                             <img
                                 className="md:mb-16 sm:mb-10 mb-8"
                                 src="https://cdn.monday.com/images/logos/logo-full-big.png"
@@ -84,13 +84,18 @@ const CreateBoard = () => {
                                     }}
                                 />
 
-                                <p className="bg-slate-100 text-black text-base font-light p-5">
-                                    In monday.com, "boards" are the place where
-                                    all your content lives.
-                                </p>
+                                <div className="bg-slate-100 px-5 py-8 rounded-md mt-10">
+                                    <p className="text-black text-base font-light ">
+                                        <span className="bg-slate-300 py-1">
+                                            In
+                                        </span>{" "}
+                                        monday.com, "boards" are the place where
+                                        all your content lives.
+                                    </p>
+                                </div>
                             </div>
 
-                            <div className="flex md:gap-3 md:justify-end justify-center md:mb-20 sm:mb-32 mb-48 w-full mx-auto">
+                            <div className="flex md:gap-3 md:justify-end justify-center md:mb-20 mb-0 w-full mx-auto">
                                 <Button
                                     className="w-fit h-fit px-5 py-2 bg-blue-600 sm:text-lg text-base border border-slate-500 rounded transition-all hover:bg-blue-800"
                                     onClick={formik.handleSubmit}
@@ -107,97 +112,142 @@ const CreateBoard = () => {
                 <Col md={12} span={0}>
                     <div className="flex w-full h-full justify-end items-center bg-slate-100">
                         <div className="bg-white w-11/12 shadow-2xl shadow-blue-200 ps-8 py-14">
-                            <div className="flex flex-col">
-                                <div className="h-2 w-52 bg-slate-300 rounded-full mb-20"></div>
-                                <div className="">
-                                    <div className="h-2 w-52 bg-blue-400 rounded-full mb-5"></div>
-
-                                    <table className="w-full border border-slate-400 border-l-8 border-l-blue-400 rounded-l-xl">
-                                        <thead>
-                                            <tr>
-                                                <th className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </th>
-                                                <th className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </th>
-                                                <th className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </th>
-                                                <th className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </th>
-                                                <th className="p-5">
-                                                    <i class="fa-solid fa-plus"></i>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </td>
-                                                <td className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </td>
-                                                <td className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </td>
-                                                <td className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </td>
-                                                <td className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </td>
-                                                <td className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </td>
-                                                <td className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </td>
-                                                <td className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </td>
-                                                <td className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </td>
-                                                <td className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </td>
-                                                <td className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </td>
-                                                <td className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </td>
-                                                <td className="p-5">
-                                                    <div className="h-2 w-24 bg-slate-300 rounded-full"></div>
-                                                </td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <div className="flex flex-col w-full">
+                                <div className="py-2 mb-20">
+                                    {formik.values.boardName ? (
+                                        <p className="ps-1 font-medium text-4xl text-slate-500">{formik.values.boardName}</p>
+                                    ) : (
+                                        <div className="h-2 w-52 bg-slate-300 rounded-full"></div>
+                                    )}
                                 </div>
 
-                                <div className="h-2 w-52 bg-green-400 rounded-full"></div>
+                                <div className="h-2 w-52 bg-blue-400 rounded-full mb-5"></div>
+
+                                <table className="w-full border border-solid border-l-0 rounded-l-lg border-slate-300 mb-10">
+                                    <thead>
+                                        <tr className="">
+                                            <th className="p-4 border-l-8 border-l-blue-400 rounded-tl-lg">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </th>
+                                            <th className="p-4">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </th>
+                                            <th className="p-4">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </th>
+                                            <th className="p-4">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </th>
+                                            <th className="">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td className="p-4 border-l-8 border-l-blue-400">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </td>
+                                            <td className="p-4">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </td>
+                                            <td className="p-4">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </td>
+                                            <td className="p-4">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td className="p-4 border-l-8 border-l-blue-400">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </td>
+                                            <td className="p-4">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </td>
+                                            <td className="p-4">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </td>
+                                            <td className="p-4">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td className="p-5 border-l-8 border-l-blue-400">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </td>
+                                            <td className="p-5">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </td>
+                                            <td className="p-5">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </td>
+                                            <td className="p-4">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td className="p-4 border-l-8 border-l-blue-400">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </td>
+                                            <td className="p-4">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </td>
+                                            <td className="p-4">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </td>
+                                            <td className="p-4">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td
+                                                className="p-4 border-l-8 border-l-blue-400 opacity-30"
+                                                colSpan={5}
+                                            >
+                                                <div className="h-1 w-1/6 bg-slate-300 rounded-full"></div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div className="h-2 w-52 bg-green-400 rounded-full mb-5"></div>
+
+                                <table className="w-full border border-solid border-l-0 rounded-l-lg border-slate-300 mb-10">
+                                    <thead>
+                                        <tr className="">
+                                            <th className="p-4 border-l-8 border-l-green-400 rounded-tl-lg">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </th>
+                                            <th className="p-4">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </th>
+                                            <th className="p-4">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </th>
+                                            <th className="p-4">
+                                                <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
+                                            </th>
+                                            <th className="">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td
+                                                className="p-4 border-l-8 border-l-green-400 opacity-30"
+                                                colSpan={5}
+                                            >
+                                                <div className="h-1 w-1/6 bg-slate-300 rounded-full"></div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
