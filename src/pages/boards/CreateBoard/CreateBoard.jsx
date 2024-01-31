@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import InputField from "../../../components/InputField";
 import { PATH } from "../../../paths";
 import { useFormik } from "formik";
-import { useState } from "react";
+import Board from "../../../components/Board";
 
 const CreateBoard = () => {
     const navigate = useNavigate();
@@ -38,7 +38,7 @@ const CreateBoard = () => {
         // .....
 
         //* Navigate to next register page
-        navigate(`${PATH.REGISTER}/board/create-columns`);
+        navigate(`${PATH.BOARD}/create-columns`);
     };
 
     return (
@@ -115,15 +115,21 @@ const CreateBoard = () => {
                             <div className="flex flex-col w-full">
                                 <div className="py-2 mb-20">
                                     {formik.values.boardName ? (
-                                        <p className="ps-1 font-medium text-4xl text-slate-500">{formik.values.boardName}</p>
+                                        <p className="ps-1 font-medium text-4xl text-slate-500">
+                                            {formik.values.boardName}
+                                        </p>
                                     ) : (
                                         <div className="h-2 w-52 bg-slate-300 rounded-full"></div>
                                     )}
                                 </div>
 
-                                <div className="h-2 w-52 bg-blue-400 rounded-full mb-5"></div>
+                                <div className="mb-10">
+                                    <div className="h-2 w-52 bg-blue-400 rounded-full mb-5"></div>
 
-                                <table className="w-full border border-solid border-l-0 rounded-l-lg border-slate-300 mb-10">
+                                    <Board type={"project"} rowCount={5} />
+                                </div>
+
+                                {/* <table className="w-full border border-solid border-l-0 rounded-l-lg border-slate-300 mb-10">
                                     <thead>
                                         <tr className="">
                                             <th className="p-4 border-l-8 border-l-blue-400 rounded-tl-lg">
@@ -139,7 +145,7 @@ const CreateBoard = () => {
                                                 <div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>
                                             </th>
                                             <th className="">
-                                                <i class="fa-solid fa-plus"></i>
+                                                <i className="fa-solid fa-plus"></i>
                                             </th>
                                         </tr>
                                     </thead>
@@ -213,11 +219,15 @@ const CreateBoard = () => {
                                             </td>
                                         </tr>
                                     </tbody>
-                                </table>
+                                </table> */}
 
-                                <div className="h-2 w-52 bg-green-400 rounded-full mb-5"></div>
+                                <div className="mb-10">
+                                    <div className="h-2 w-52 bg-green-400 rounded-full mb-5"></div>
 
-                                <table className="w-full border border-solid border-l-0 rounded-l-lg border-slate-300 mb-10">
+                                    <Board type={"task"} rowCount={1} />
+                                </div>
+
+                                {/* <table className="w-full border border-solid border-l-0 rounded-l-lg border-slate-300 mb-10">
                                     <thead>
                                         <tr className="">
                                             <th className="p-4 border-l-8 border-l-green-400 rounded-tl-lg">
@@ -247,7 +257,7 @@ const CreateBoard = () => {
                                             </td>
                                         </tr>
                                     </tbody>
-                                </table>
+                                </table> */}
                             </div>
                         </div>
                     </div>
