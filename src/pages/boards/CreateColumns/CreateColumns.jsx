@@ -2,8 +2,95 @@ import { Button, Checkbox, Col, Row } from "antd";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "../../../paths";
 import Board from "../../../components/Board";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IconLabel from "../../../components/IconLabel/IconLabel";
+
+const columns = [
+    {
+        title: "Item",
+        dataIndex: "item",
+        key: "item",
+    },
+    {
+        title: "Owner",
+        dataIndex: "owner",
+        key: "owner",
+    },
+    {
+        title: "Status",
+        dataIndex: "status",
+        key: "status",
+    },
+    {
+        title: "Due date",
+        dataIndex: "dueDate",
+        key: "dueDate",
+    },
+    {
+        title: "Budget",
+        dataIndex: "budget",
+        key: "budget",
+    },
+    {
+        title: "Priority",
+        dataIndex: "priority",
+        key: "priority",
+    },
+    {
+        title: "Files",
+        dataIndex: "files",
+        key: "files",
+    },
+    {
+        title: "Timeline",
+        dataIndex: "timeline",
+        key: "timeline",
+    },
+    {
+        title: "Last updated",
+        dataIndex: "lastUpdated",
+        key: "lastUpdated",
+    },
+];
+
+const sampleData = [
+    {
+        key: "1",
+        owner: "A",
+        status: "Working on it",
+        dueDate: "! 31 Jan",
+        lastUpdated: "10 hours ago",
+        priority: "Low",
+        timeline: "31 Jan - 2 Feb",
+        budget: "$100",
+        notes: "Action items",
+        files: "",
+    },
+    {
+        key: "2",
+        owner: "B",
+        status: "Working on it",
+        dueDate: "! 31 Jan",
+        lastUpdated: "10 hours ago",
+        priority: "Low",
+        timeline: "31 Jan - 2 Feb",
+        budget: "$100",
+        notes: "Action items",
+        files: "",
+    },
+    {
+        key: "3",
+        owner: "C",
+        status: "Working on it",
+        dueDate: "! 31 Jan",
+        lastUpdated: "10 hours ago",
+        priority: "Low",
+        timeline: "31 Jan - 2 Feb",
+        budget: "$100",
+        notes: "Action items",
+        files: "",
+    },
+];
 
 const CreateColumns = () => {
     const options = [
@@ -117,12 +204,60 @@ const CreateColumns = () => {
         },
     ];
 
-    const [optionList, setOptionList] = useState(["owner", "status", "dueDate"])
+    const optionsChecked = options.map((option) => ({
+        value: option.value,
+        selected: false,
+    }));
+
+    const defaultCheckedList = ["owner", "status", "dueDate"];
+
+    const [checkedList, setCheckedList] = useState(defaultCheckedList);
+
+    const [optionDesc, setOptionDesc] = useState("");
 
     const navigate = useNavigate();
 
-    const handleOnChange = (checkedValues) => {
-        console.log("checked = ", checkedValues);
+    const setCheckedOptions = () => {
+        for (let option of optionsChecked) {
+            let checkbox = document.getElementById(option.value);
+
+            if (option.selected == true) {
+                // if (!checkbox.classList.contains("box-checked")) {
+                //     checkbox.classList.add("box-checked")
+                // }
+                checkbox.classList.add("box-checked");
+            } else {
+                // if (checkbox.classList.contains("box-checked")) {
+                //     checkbox.classList.remove("box-checked")
+                // }
+                checkbox.classList.remove("box-checked");
+            }
+        }
+    };
+
+    const handleOnChange = (e) => {
+        console.log("checked value: ", e.target.value);
+
+        let addedValue = e.target.value;
+        let newCheckedList = checkedList.map((item) => item);
+
+        let index = newCheckedList.findIndex((value) => value === addedValue);
+
+        console.log(index);
+
+        if (index !== -1) {
+            newCheckedList.splice(index, 1);
+        } else {
+            newCheckedList.push(addedValue);
+        }
+
+        setCheckedList(newCheckedList);
+
+        let optionIndex = options.findIndex(
+            (option) => option.value === addedValue
+        );
+
+        setOptionDesc(options[optionIndex].description);
     };
 
     const handleContinueClicked = () => {
@@ -141,9 +276,19 @@ const CreateColumns = () => {
         navigate(`${PATH.REGISTER}/welcome`);
     };
 
-    const updateOption = (id) => {
-        
-    };
+    useEffect(() => {
+        console.log(checkedList);
+
+        for (let value of checkedList) {
+            let index = optionsChecked.findIndex(
+                (option) => option.value === value
+            );
+
+            optionsChecked[index].selected = !optionsChecked[index].selected;
+        }
+
+        setCheckedOptions();
+    }, [checkedList]);
 
     return (
         <div className="w-full h-full">
@@ -170,18 +315,48 @@ const CreateColumns = () => {
                                 your work
                             </p>
 
-                            <Checkbox.Group
+                            {/* <Checkbox.Group
+                                value={checkedList}
                                 options={options}
-                                defaultValue={["owner", "status", "dueDate"]}
-                                onChange={handleOnChange}
-                                className="optionList flex flex-wrap justify-start gap-y-4 mb-3"
-                            />
+                                onChange={handleChange}
+                                className="optionList flex flex-wrap justify-start gap-y-4 mb-10"
+                            /> */}
 
-                            <div className="bg-slate-100 py-2 px-4 rounded-md mb-10">
-                                <p className="text-black text-base font-light ">
-                                    Visualize deadlines, with your team so nothing falls through the cracks.
-                                </p>
+                            <div className="optionList flex flex-wrap justify-start gap-3 gap-y-4 mb-10">
+                                {options.map((item) => (
+                                    <Checkbox
+                                        id={item.value}
+                                        defaultChecked={() => {
+                                            if (
+                                                defaultCheckedList.includes(
+                                                    item.value
+                                                )
+                                            ) {
+                                                return true;
+                                            }
+
+                                            return false;
+                                        }}
+                                        onChange={handleOnChange}
+                                        value={item.value}
+                                        className={`w-fit h-fit py-1 px-2 rounded transition-all ${
+                                            checkedList.includes(item.value)
+                                                ? "border-2 border-blue-500"
+                                                : "border border-slate-500"
+                                        }`}
+                                    >
+                                        {item.label}
+                                    </Checkbox>
+                                ))}
                             </div>
+
+                            {optionDesc && (
+                                <div className="bg-slate-100 py-2 px-4 rounded-md -mt-7 mb-10">
+                                    <p className="text-black text-base font-light ">
+                                        {optionDesc}
+                                    </p>
+                                </div>
+                            )}
 
                             <div className="flex md:gap-3 justify-between md:mb-20 mb-0 w-full mx-auto">
                                 <Button

@@ -12,55 +12,6 @@ const Board = ({type, rowCount}) => {
         return {};
     };
 
-    const columnsLayout = [
-        {
-            title: "head",
-            dataIndex: "head",
-            key: "head",
-            render: (content) => (<td className='border-l-8 border-l-blue-400 rounded-tl-lg'>{content}</td>)
-        },
-        {
-            title: "Owner",
-            dataIndex: "owner",
-            key: "owner"
-        },
-        {
-            title: "Status",
-            dataIndex: "status",
-            key: "status",
-        },
-        {
-            title: "Due date",
-            dataIndex: "dueDate",
-            key: "dueDate",
-        },
-        {
-            title: "Budget",
-            dataIndex: "budget",
-            key: "budget",
-        },
-        {
-            title: "Priority",
-            dataIndex: "priority",
-            key: "priority",
-        },
-        {
-            title: "Files",
-            dataIndex: "files",
-            key: "files",
-        },
-        {
-            title: "Timeline",
-            dataIndex: "timeline",
-            key: "timeline",
-        },
-        {
-            title: "Last updated",
-            dataIndex: "lastUpdated",
-            key: "lastUpdated",
-        },
-    ];
-
     const columnTemplate = [
         {
             title: (<div className="h-1 w-4/5 bg-slate-300 rounded-full"></div>),
